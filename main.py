@@ -1,3 +1,6 @@
+from __future__ import unicode_literals
+import re 
+
 t_input = 'HELLO'
 alpha1= 'v'
 
@@ -17,7 +20,7 @@ if (alpha1 in alpha.keys()):
                     alpha_newv.append(alpha_value[j])
           for k in alpha_newv:
                     alpha_newk.append(alpha_key[k-1])
-              
+
 def FibRecursion(n):  
    if (n <= 1):  
        return n  
@@ -29,19 +32,20 @@ for i in range(2, 28):
           fibo.append(FibRecursion(i))
 
 enc1 = ''
+enc1_keys= []
 for i in fibo:
-          enc1 += alpha_newk[(i%26)-1]
+          c=(i%26)-1
+          enc1 += alpha_newk[c]
+          enc1_keys.append(alpha_newv[c])
           if (len(enc1) >= len(t_input)):
                     break
 
 ASCII = []
-for i in range(0, len(enc1)):
-          ASCII.append(ord(alpha_newk[i-1]) + ord(alpha_newk[i]) + ord(alpha_newk[i+1]) + ord(t_input[i]))
-          print ()
-          print ((alpha_newk[i-1]))
-          print ((alpha_newk[i]))
-          print ((alpha_newk[i+1]))
-          print ((t_input[i]))
+z=0
+for i in enc1_keys:
+          ASCII.append(ord(alpha_key[i-1])-1 + ord(alpha_key[i-1]) + ord(alpha_key[i-1])+1 + ord(t_input[z]))
+          z+=1
+          
 
 def tohex(dec):
     x = (dec%16)
@@ -53,3 +57,7 @@ def tohex(dec):
     return tohex(rest) + digits[x]
 
 hex_ = [hex(i) for i in ASCII]
+print(hex_)
+
+
+
