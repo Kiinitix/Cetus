@@ -1,8 +1,11 @@
 from __future__ import unicode_literals
 import re 
 
-t_input = 'HELLO'
-alpha1= 'v'
+t_input = input("Enter the msg: ")
+alpha1= input("Enter a single alphabet (key): ")
+if((len(alpha1)>1) or (len(alpha1)==0)):
+          print("Not a proper key.")
+          quit()
 
 alpha = {'a':1, 'b':2, 'c':3, 'd':4, 'e':5, 'f':6, 'g':7, 'h':8, 'i':9, 'j':10, 'k':11, 'l':12, 'm':13, 'n':14, 'o':15, 'p':16, 'q':17, 'r':18, 's':19, 't':20, 'u':21, 'v':22, 'w':23, 'x':24, 'y':25, 'z':26}
 
@@ -57,7 +60,18 @@ def tohex(dec):
     return tohex(rest) + digits[x]
 
 hex_ = [hex(i) for i in ASCII]
-print(hex_)
-
-
-
+uni = []
+count = 0
+final=[]
+for i in hex_:   
+          res = ''.join(r'\u{:04X}'.format(ord(chr)) for chr in i)
+          length = int(len(res)/5)
+          for i in range(0,length):
+                    x = (res[count:count+6])
+                    uni.append(u'%s'%x)
+                    count +=6
+          for i in uni:
+                    if (i):
+                              final.append(str(i))
+for i in final:
+          print(str(i), end=' ')
